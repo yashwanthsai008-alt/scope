@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SCOPE Club – A student-driven technical community focused on coding, cloud, hackathons, and innovation." />
+  <title>SCOPE Club | Learn. Build. Innovate.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Signature SCOPE Futuristic Interactive Cursor (Desktop Only) -->
+  <div class="scope-cursor" id="scopeCursor" aria-hidden="true">
+    <div class="cursor-core" id="cursorCore"></div>
+    <div class="cursor-orbit" id="cursorOrbit">
+      <div class="orbit-spinner">
+        <span class="orbit-hud-mark mark-t"></span>
+        <span class="orbit-hud-mark mark-b"></span>
+        <span class="orbit-hud-mark mark-l"></span>
+        <span class="orbit-hud-mark mark-r"></span>
+        <span class="orbit-bracket bracket-tl"></span>
+        <span class="orbit-bracket bracket-tr"></span>
+        <span class="orbit-bracket bracket-bl"></span>
+        <span class="orbit-bracket bracket-br"></span>
+      </div>
+    </div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+    <div class="cursor-scan" id="cursorScan"></div>
+    <div class="cursor-particles" id="cursorParticles">
+      <div class="cursor-particle p1"></div>
+      <div class="cursor-particle p2"></div>
+      <div class="cursor-particle p3"></div>
+      <div class="cursor-particle p4"></div>
+    </div>
+    <div class="cursor-ripple" id="cursorRipple"></div>
+  </div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar" id="navbar" role="banner">
+    <nav class="nav-container" aria-label="Main navigation">
+
+      <a href="#home" class="nav-logo" aria-label="SCOPE Club Home">
+        <span class="logo-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="10" fill="url(#navLogoG)"/>
+            <path d="M11 10L6 16L11 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 10L26 16L21 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 7L15 25" stroke="#67e8f9" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="navLogoG" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#3b82f6"/><stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="logo-text">SCOPE<span class="logo-accent">CLUB</span></span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#home"       class="nav-link active">Home</a></li>
+        <li><a href="#about"      class="nav-link">About</a></li>
+        <li><a href="#what-we-do" class="nav-link">What We Do</a></li>
+        <li><a href="#events"     class="nav-link">Events</a></li>
+        <li><a href="#resources"  class="nav-link">Resources</a></li>
+        <li><a href="#contact"    class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+        </button>
+        <a href="#contact" class="btn btn-nav-cta">Join SCOPE</a>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+      <ul class="mobile-nav-links" role="list">
+        <li><a href="#home"       class="mobile-nav-link">Home</a></li>
+        <li><a href="#about"      class="mobile-nav-link">About</a></li>
+        <li><a href="#what-we-do" class="mobile-nav-link">What We Do</a></li>
+        <li><a href="#events"     class="mobile-nav-link">Events</a></li>
+        <li><a href="#resources"  class="mobile-nav-link">Resources</a></li>
+        <li><a href="#contact"    class="mobile-nav-link">Contact</a></li>
+        <li><a href="#contact"    class="mobile-nav-link mobile-cta">Join SCOPE →</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home" aria-label="Hero section">
+
+      <!-- Particle canvas -->
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+      <!-- Ambient background layers -->
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <!-- Light halo behind wordmark -->
+        <div class="hero-halo" aria-hidden="true"></div>
+        <!-- Perspective floor grid -->
+        <div class="hero-floor" aria-hidden="true"></div>
+      </div>
+
+      <!-- Floating tech chips -->
+      <div class="chips-container" aria-hidden="true">
+        <div class="chip chip-1"><span class="chip-dot"></span>&lt;code /&gt;</div>
+        <div class="chip chip-2"><span class="chip-dot"></span>git push</div>
+        <div class="chip chip-3"><span class="chip-dot"></span>const idea = "innovation";</div>
+        <div class="chip chip-4"><span class="chip-dot"></span>AWS Cloud</div>
+        <div class="chip chip-5"><span class="chip-dot"></span>Python</div>
+        <div class="chip chip-6"><span class="chip-dot"></span>JavaScript</div>
+        <div class="chip chip-7"><span class="chip-dot"></span>HTML</div>
+      </div>
+
+      <!-- Hero content wrapper -->
+      <div class="hero-content">
+
+        <!-- Badge -->
+        <div class="hero-badge">
+          <span class="badge-pulse" aria-hidden="true"></span>
+          🚀 Student Technology Club
+        </div>
+
+        <!-- ── 3D SCOPE WORDMARK ── -->
+        <!--
+          The 3D effect is built from 4 layers stacked with position:absolute:
+          1. .scope-shadow  — deep extrusion / drop shadow layer
+          2. .scope-extrude — side/depth face using text-shadow stepping
+          3. .scope-base    — main face with metallic gradient
+          4. .scope-shine   — top gloss highlight overlay (pseudo-element)
+          JS controls --rx / --ry CSS variables for mouse-driven tilt.
+        <!-- ── DUAL 3D COMPOSITION: SCOPE + CLUB ── -->
+        <div class="scope-3d-wrapper" id="scope3d" aria-label="SCOPE CLUB" role="img">
+          <div class="scope-floating-rig">
+            <div class="scope-3d-group" id="scopeScene">
+              <!-- Floating 3D Object 1: SCOPE -->
+              <div class="scope-word-3d" id="scopeWord3d">
+                <!-- Layer 1: deep shadow & ambient occlusion -->
+                <span class="scope-layer scope-shadow" aria-hidden="true">SCOPE</span>
+                <!-- Layer 2: stepped depth extrusion face -->
+                <span class="scope-layer scope-extrude" aria-hidden="true">SCOPE</span>
+                <!-- Layer 3: main metallic chrome face -->
+                <span class="scope-layer scope-base" aria-hidden="true">SCOPE</span>
+                <!-- Layer 4: specular glass highlight -->
+                <span class="scope-layer scope-shine" aria-hidden="true">SCOPE</span>
+              </div>
+
+              <!-- Floating 3D Object 2: CLUB (smaller supporting 3D object, ~35-40% scale) -->
+              <div class="club-word-3d" id="clubWord3d">
+                <!-- Layer 1: shadow & depth -->
+                <span class="club-layer club-shadow" aria-hidden="true">CLUB</span>
+                <!-- Layer 2: stepped depth extrusion face -->
+                <span class="club-layer club-extrude" aria-hidden="true">CLUB</span>
+                <!-- Layer 3: metallic silver/cyan/purple face -->
+                <span class="club-layer club-base" aria-hidden="true">CLUB</span>
+                <!-- Layer 4: specular glass highlight -->
+                <span class="club-layer club-shine" aria-hidden="true">CLUB</span>
+              </div>
+
+              <!-- Unified Floor Reflection for SCOPE + CLUB -->
+              <div class="scope-reflection" aria-hidden="true">
+                <span class="scope-layer scope-base scope-reflect-text" aria-hidden="true">SCOPE</span>
+                <span class="club-layer club-base club-reflect-text" aria-hidden="true">CLUB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tagline -->
+        <p class="hero-tagline">
+          <span class="tg-learn">Learn.</span>
+          <span class="tg-build">Build.</span>
+          <span class="tg-innovate">Innovate.</span>
+        </p>
+
+        <!-- Description -->
+        <p class="hero-description">
+          Where students learn technology, build real-world projects,<br class="br-desktop">
+          compete in hackathons and innovate together.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-buttons">
+          <a href="#about" class="btn btn-primary btn-glow" id="heroExploreBtn">
+            <span>Explore SCOPE</span>
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-glass">
+            <span>Join the Community</span>
+            <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div><!-- /.hero-content -->
+
+      <!-- Terminal -->
+      <div class="hero-terminal" aria-label="Welcome terminal animation">
+        <div class="terminal-header">
+          <span class="t-dot t-red"></span>
+          <span class="t-dot t-yellow"></span>
+          <span class="t-dot t-green"></span>
+          <span class="t-title">scope@terminal</span>
+        </div>
+        <div class="terminal-body" id="terminalBody"></div>
+      </div>
+
+      <!-- Scroll hint -->
+      <a href="#stats" class="scroll-hint" aria-label="Scroll down">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+
+    </section><!-- /#home -->
+
+
+    <!-- ===================== STATS ===================== -->
+    <section class="stats-section" id="stats" aria-label="Club statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <span class="stat-number" data-target="500" data-suffix="+">0</span>
+            <span class="stat-label">Students</span>
+            <div class="stat-bar"></div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number" data-target="20" data-suffix="+">0</span>
+            <span class="stat-label">Technical Events</span>
+            <div class="stat-bar"></div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number" data-target="30" data-suffix="+">0</span>
+            <span class="stat-label">Projects Built</span>
+            <div class="stat-bar"></div>
+          </div>
+          <div class="stat-card reveal">
+            <span class="stat-number" data-target="10" data-suffix="+">0</span>
+            <span class="stat-label">Workshops</span>
+            <div class="stat-bar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about-section" id="about" aria-labelledby="about-heading">
+      <div class="container">
+
+        <!-- Top Split: Left 3D SCOPE visual/card, Right existing About text -->
+        <div class="about-hero-grid">
+
+          <!-- Left: 3D SCOPE visual/card -->
+          <div class="about-visual-col reveal">
+            <div class="identity-card" id="identityCard3D">
+              <div class="identity-glow" aria-hidden="true"></div>
+              <div class="identity-logo" aria-hidden="true">
+                <svg width="60" height="60" viewBox="0 0 32 32" fill="none">
+                  <rect width="32" height="32" rx="10" fill="url(#aboutLogoG)"/>
+                  <path d="M11 10L6 16L11 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 10L26 16L21 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M17 7L15 25" stroke="#67e8f9" stroke-width="2" stroke-linecap="round"/>
+                  <defs><linearGradient id="aboutLogoG" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#3b82f6"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+                </svg>
+              </div>
+              <h3 class="identity-name">SCOPE CLUB</h3>
+              <p class="identity-sub">Student Technology Community</p>
+              <div class="identity-tags">
+                <span class="itag">Coding</span>
+                <span class="itag">Cloud</span>
+                <span class="itag">Hackathons</span>
+                <span class="itag">Projects</span>
+              </div>
+              <div class="identity-divider"><div class="identity-divider-fill"></div></div>
+              <p class="identity-quote">"Where curiosity meets code."</p>
+            </div>
+          </div>
+
+          <!-- Right: Existing About text -->
+          <div class="about-narrative-col reveal">
+            <span class="section-label">Who We Are</span>
+            <h2 class="section-title" id="about-heading">Inside SCOPE</h2>
+            <p class="about-lead">
+              SCOPE is a student-driven technical community where curious minds come together to learn, experiment and build. We develop technical skills, collaborate on projects, participate in competitions and explore emerging technologies.
+            </p>
+            <div class="about-bullets">
+              <div class="about-bullet">
+                <span class="ab-icon">🚀</span>
+                <div>
+                  <h4>Project-Driven Growth</h4>
+                  <p>Transform technical curiosity into real deployable software and community solutions.</p>
+                </div>
+              </div>
+              <div class="about-bullet">
+                <span class="ab-icon">🌐</span>
+                <div>
+                  <h4>Industry-Standard Tools</h4>
+                  <p>Work hands-on with modern stacks, version control workflows, and cloud architectures.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Below: LEARN, BUILD, COMPETE, CONNECT (4 Pillars) -->
+        <div class="about-pillars reveal">
+          <article class="acard acard-blue" tabindex="0" aria-label="Learn">
+            <div class="acard-glow" aria-hidden="true"></div>
+            <div class="acard-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3>Learn</h3>
+            <p>Programming, cloud tech and modern tools through workshops and peer learning.</p>
+            <div class="acard-reveal">From beginner-friendly sessions to advanced deep-dives.</div>
+          </article>
+
+          <article class="acard acard-purple" tabindex="0" aria-label="Build">
+            <div class="acard-glow" aria-hidden="true"></div>
+            <div class="acard-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Build</h3>
+            <p>Turn ideas into real projects and practical solutions that make an impact.</p>
+            <div class="acard-reveal">Real deployments, real portfolios, real experience.</div>
+          </article>
+
+          <article class="acard acard-cyan" tabindex="0" aria-label="Compete">
+            <div class="acard-glow" aria-hidden="true"></div>
+            <div class="acard-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 21 12 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 4H2v3a5 5 0 0 0 5 5"/><path d="M17 4h5v3a5 5 0 0 1-5 5"/><path d="M7 4h10v8a5 5 0 0 1-5 5 5 5 0 0 1-5-5z"/></svg>
+            </div>
+            <h3>Compete</h3>
+            <p>Hackathons, coding contests and technical challenges that push your limits.</p>
+            <div class="acard-reveal">Win prizes, gain experience, build your reputation.</div>
+          </article>
+
+          <article class="acard acard-green" tabindex="0" aria-label="Connect">
+            <div class="acard-glow" aria-hidden="true"></div>
+            <div class="acard-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <h3>Connect</h3>
+            <p>Meet like-minded students, mentors and tech enthusiasts who share your passion.</p>
+            <div class="acard-reveal">Network with peers, alumni and industry professionals.</div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== THE SCOPE ECOSYSTEM (WHAT WE DO) ===================== -->
+    <section class="section what-section scope-ecosystem-section" id="what-we-do" aria-labelledby="what-heading">
+      <div class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header reveal">
+          <span class="section-label">What We Do</span>
+          <h2 class="section-title" id="what-heading">Build. Compete. Create.</h2>
+          <p class="section-subtitle">A connected technology ecosystem where curiosity transforms into real-world innovation, practical software and competitive mastery.</p>
+        </div>
+
+        <!-- 3D Spatial Ecosystem Container -->
+        <div class="scope-ecosystem reveal" id="scopeEcosystem" data-active-node="none">
+          
+          <!-- Background Spatial Depth Layers -->
+          <div class="ecosystem-backdrop" aria-hidden="true">
+            <div class="eco-grid-layer"></div>
+            <div class="eco-core-glow" id="ecoCoreGlow"></div>
+            <div class="eco-orbit eco-orbit-1"></div>
+            <div class="eco-orbit eco-orbit-2"></div>
+            <div class="eco-orbit-particles">
+              <span class="eco-particle ep-1"></span>
+              <span class="eco-particle ep-2"></span>
+              <span class="eco-particle ep-3"></span>
+              <span class="eco-particle ep-4"></span>
+              <span class="eco-particle ep-5"></span>
+              <span class="eco-particle ep-6"></span>
+            </div>
+          </div>
+
+          <!-- Dynamic SVG Connection Network -->
+          <svg class="ecosystem-svg" id="ecosystemSvg" viewBox="0 0 1100 760" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="beamGradHackathons" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#22d3ee" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="beamGradProjects" x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#06b6d4" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="beamGradCoding" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#8b5cf6" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#c084fc" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="beamGradWorkshops" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#10b981" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#34d399" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="beamGradTalks" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#f59e0b" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="beamGradCommunity" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                <stop offset="60%" stop-color="#ec4899" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#f472b6" stop-opacity="0.9"/>
+              </linearGradient>
+              <filter id="ecoGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Base connection tracks -->
+            <g class="eco-tracks">
+              <line class="eco-track" x1="550" y1="380" x2="550" y2="140"/>
+              <line class="eco-track" x1="550" y1="380" x2="250" y2="210"/>
+              <line class="eco-track" x1="550" y1="380" x2="850" y2="210"/>
+              <line class="eco-track" x1="550" y1="380" x2="250" y2="550"/>
+              <line class="eco-track" x1="550" y1="380" x2="550" y2="620"/>
+              <line class="eco-track" x1="550" y1="380" x2="850" y2="550"/>
+            </g>
+
+            <!-- Animated pulse beam lines -->
+            <line class="eco-beam beam-hackathons" id="lineHackathons" x1="550" y1="380" x2="550" y2="140"/>
+            <line class="eco-beam beam-projects" id="lineProjects" x1="550" y1="380" x2="250" y2="210"/>
+            <line class="eco-beam beam-coding" id="lineCoding" x1="550" y1="380" x2="850" y2="210"/>
+            <line class="eco-beam beam-workshops" id="lineWorkshops" x1="550" y1="380" x2="250" y2="550"/>
+            <line class="eco-beam beam-talks" id="lineTalks" x1="550" y1="380" x2="550" y2="620"/>
+            <line class="eco-beam beam-community" id="lineCommunity" x1="550" y1="380" x2="850" y2="550"/>
+
+            <!-- Energy Junction Anchor Dots -->
+            <g class="eco-anchors">
+              <circle class="eco-anchor anchor-hackathons" cx="550" cy="140" r="4"/>
+              <circle class="eco-anchor anchor-projects" cx="250" cy="210" r="4"/>
+              <circle class="eco-anchor anchor-coding" cx="850" cy="210" r="4"/>
+              <circle class="eco-anchor anchor-workshops" cx="250" cy="550" r="4"/>
+              <circle class="eco-anchor anchor-talks" cx="550" cy="620" r="4"/>
+              <circle class="eco-anchor anchor-community" cx="850" cy="550" r="4"/>
+              <circle class="eco-center-anchor" cx="550" cy="380" r="6"/>
+            </g>
+          </svg>
+
+          <!-- 3D Spatial Rig (receives mouse parallax) -->
+          <div class="ecosystem-scene" id="ecosystemScene">
+            <!-- Mobile Energy Spine (only visible on mobile) -->
+            <div class="mobile-energy-spine" aria-hidden="true"></div>
+
+            <!-- Central 3D Glass/Metallic SCOPE Core -->
+            <div class="ecosystem-core-wrapper" id="ecosystemCoreWrap" data-depth="0.12">
+              <div class="ecosystem-core" id="ecosystemCore" tabindex="0" role="region" aria-label="SCOPE Core — Interactive Ecosystem Center">
+                <div class="core-ambient-glow" aria-hidden="true"></div>
+                <div class="core-outer-ring"></div>
+                <div class="core-body">
+                  <div class="core-specular-shine" aria-hidden="true"></div>
+                  <div class="core-brand-badge">
+                    <span class="core-pulse-beacon" aria-hidden="true"></span>
+                    <span class="core-title">SCOPE</span>
+                    <span class="core-subtext">CORE SYSTEM</span>
+                  </div>
+                  <div class="core-status">
+                    <span class="core-status-dot"></span>
+                    <span class="core-status-txt">ACTIVE ECOSYSTEM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Node 1: HACKATHONS (Hero Feature Node — Top Center) -->
+            <article class="ecosystem-node node-hero node-hackathons" id="nodeHackathons" data-node="hackathons" data-depth="0.30" tabindex="0" role="button" aria-label="Hackathons: Team Event">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  </div>
+                  <span class="node-badge">Team Event</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Hackathons</h3>
+                  <p class="node-desc">Solve real-world problems, collaborate with teams and build innovative solutions under pressure. Our hackathons are where ideas become reality.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Node 2: PROJECTS (Top Left) -->
+            <article class="ecosystem-node node-projects" id="nodeProjects" data-node="projects" data-depth="0.22" tabindex="0" role="button" aria-label="Projects: Hands-on">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  </div>
+                  <span class="node-badge">Hands-on</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Projects</h3>
+                  <p class="node-desc">Build practical projects that go into your portfolio and demonstrate real skills.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Node 3: CODING CONTESTS (Top Right) -->
+            <article class="ecosystem-node node-coding" id="nodeCoding" data-node="coding" data-depth="0.25" tabindex="0" role="button" aria-label="Coding Contests: Individual / Team">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                  </div>
+                  <span class="node-badge">Individual / Team</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Coding Contests</h3>
+                  <p class="node-desc">Sharpen your competitive programming skills through exciting challenges.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Node 4: WORKSHOPS (Bottom Left) -->
+            <article class="ecosystem-node node-workshops" id="nodeWorkshops" data-node="workshops" data-depth="0.18" tabindex="0" role="button" aria-label="Workshops: Learning">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  </div>
+                  <span class="node-badge">Learning</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Workshops</h3>
+                  <p class="node-desc">Hands-on sessions covering the latest tools and technologies.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Node 5: TECH TALKS (Bottom Center) -->
+            <article class="ecosystem-node node-talks" id="nodeTalks" data-node="talks" data-depth="0.28" tabindex="0" role="button" aria-label="Tech Talks: Knowledge">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                  </div>
+                  <span class="node-badge">Knowledge</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Tech Talks</h3>
+                  <p class="node-desc">Explore emerging tech from experienced speakers.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Node 6: COMMUNITY (Bottom Right) -->
+            <article class="ecosystem-node node-community" id="nodeCommunity" data-node="community" data-depth="0.20" tabindex="0" role="button" aria-label="Community: Culture">
+              <div class="node-glass-card">
+                <div class="node-glow-halo" aria-hidden="true"></div>
+                <div class="node-header">
+                  <div class="node-icon-capsule">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <span class="node-badge">Culture</span>
+                </div>
+                <div class="node-body">
+                  <h3 class="node-title">Community</h3>
+                  <p class="node-desc">Collaborate, share and grow in a supportive environment.</p>
+                </div>
+                <div class="node-footer">
+                  <span class="node-action">Explore <span class="node-arrow" aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </article>
+
+          </div><!-- /.ecosystem-scene -->
+
+        </div><!-- /.scope-ecosystem -->
+      </div>
+    </section>
+
+
+    <!-- ===================== EVENTS — TIMELINE ===================== -->
+    <section class="section events-section" id="events" aria-labelledby="events-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Our Journey</span>
+          <h2 class="section-title" id="events-heading">Events &amp; Experiences</h2>
+          <p class="section-subtitle">Each event is a milestone in our journey of learning, building and innovating together.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-line" aria-hidden="true"><div class="timeline-line-fill"></div></div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-dot tl-blue" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <article class="event-card ec-1" aria-label="Zenith event">
+              <div class="ec-header">
+                <span class="ec-badge ec-tech">Technical Event</span>
+                <span class="ec-year">2025</span>
+              </div>
+              <div class="ec-icon-wrap ec-blue" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3 class="ec-title">Zenith</h3>
+              <p class="ec-desc">An exciting technical experience where students come together to learn, compete and showcase their skills.</p>
+              <div class="ec-footer">
+                <span class="ec-status ec-done">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Completed
+                </span>
+                <a href="#" class="btn-event-link">View Event →</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-dot tl-cyan" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <article class="event-card ec-2" aria-label="AWS Cloud Trek event">
+              <div class="ec-header">
+                <span class="ec-badge ec-cloud">Cloud / AWS</span>
+                <span class="ec-year">2025</span>
+              </div>
+              <div class="ec-icon-wrap ec-cyan" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              </div>
+              <h3 class="ec-title">AWS Cloud Trek</h3>
+              <p class="ec-desc">An exploration of cloud technologies and AWS, helping students understand the fundamentals of modern cloud computing.</p>
+              <div class="ec-footer">
+                <span class="ec-status ec-done">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Completed
+                </span>
+                <a href="#" class="btn-event-link">View Event →</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="tl-dot tl-purple" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+            </div>
+            <article class="event-card ec-3" aria-label="SCOPE Workshop event">
+              <div class="ec-header">
+                <span class="ec-badge ec-ws">Workshop</span>
+                <span class="ec-year">2026</span>
+              </div>
+              <div class="ec-icon-wrap ec-purple" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+              </div>
+              <h3 class="ec-title">SCOPE Workshop</h3>
+              <p class="ec-desc">Today's hands-on workshop focused on building websites using HTML, CSS and AWS fundamentals.</p>
+              <div class="ec-footer">
+                <span class="ec-status ec-live">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  Live Now
+                </span>
+                <a href="#" class="btn-event-link">View Event →</a>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== RESOURCES ===================== -->
+    <section class="section resources-section" id="resources" aria-labelledby="resources-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Level Up</span>
+          <h2 class="section-title" id="resources-heading">Learning Resources</h2>
+          <p class="section-subtitle">Handpicked resources across every discipline. Filter by category to find what you need.</p>
+        </div>
+
+        <div class="filter-bar reveal" role="group" aria-label="Resource filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="development">Development</button>
+          <button class="filter-btn" data-filter="programming">Programming</button>
+          <button class="filter-btn" data-filter="cloud">Cloud</button>
+          <button class="filter-btn" data-filter="tools">Tools</button>
+        </div>
+
+        <div class="resource-grid reveal">
+          <article class="res-card" data-category="development" aria-label="App Development">
+            <div class="res-icon">📱</div>
+            <h3>App Development</h3>
+            <p>Build mobile and desktop applications using modern frameworks and tools.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="programming" aria-label="Python">
+            <div class="res-icon">🐍</div>
+            <h3>Python</h3>
+            <p>Master Python for development, data science and automation.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="development" aria-label="Frontend Development">
+            <div class="res-icon">🎨</div>
+            <h3>Frontend Development</h3>
+            <p>Create beautiful, responsive interfaces using HTML, CSS and JavaScript.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="development" aria-label="Backend Development">
+            <div class="res-icon">⚙️</div>
+            <h3>Backend Development</h3>
+            <p>Build robust APIs, databases and scalable server-side systems.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="development" aria-label="Web Development">
+            <div class="res-icon">🌐</div>
+            <h3>Web Development</h3>
+            <p>Learn the full web stack from design to deployment.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="cloud" aria-label="Cloud and AWS">
+            <div class="res-icon">☁️</div>
+            <h3>Cloud &amp; AWS</h3>
+            <p>Explore AWS services, serverless architecture and modern DevOps.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="tools" aria-label="Git and GitHub">
+            <div class="res-icon">🔀</div>
+            <h3>Git &amp; GitHub</h3>
+            <p>Learn version control and open-source collaboration workflows.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+          <article class="res-card" data-category="programming" aria-label="Data Structures and Algorithms">
+            <div class="res-icon">🧠</div>
+            <h3>DSA</h3>
+            <p>Sharpen problem-solving with data structures and algorithms.</p>
+            <a href="#" class="res-link">Explore <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== TECH STACK ===================== -->
+    <section class="section tech-section" id="tech-stack" aria-labelledby="tech-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Explore</span>
+          <h2 class="section-title" id="tech-heading">Technologies You'll Explore</h2>
+          <p class="section-subtitle">From web fundamentals to cloud infrastructure — SCOPE covers the full modern tech spectrum.</p>
+        </div>
+        <div class="tech-grid reveal">
+          <div class="tech-badge" data-tip="Build web interfaces"      tabindex="0"><span class="tech-icon">🌐</span><span>HTML</span></div>
+          <div class="tech-badge" data-tip="Style beautiful UIs"       tabindex="0"><span class="tech-icon">🎨</span><span>CSS</span></div>
+          <div class="tech-badge" data-tip="Add interactivity"         tabindex="0"><span class="tech-icon">⚡</span><span>JavaScript</span></div>
+          <div class="tech-badge" data-tip="Versatile scripting"       tabindex="0"><span class="tech-icon">🐍</span><span>Python</span></div>
+          <div class="tech-badge" data-tip="Object-oriented lang"      tabindex="0"><span class="tech-icon">☕</span><span>Java</span></div>
+          <div class="tech-badge" data-tip="Version control"           tabindex="0"><span class="tech-icon">🔧</span><span>Git</span></div>
+          <div class="tech-badge" data-tip="Open-source collaboration" tabindex="0"><span class="tech-icon">🐙</span><span>GitHub</span></div>
+          <div class="tech-badge" data-tip="Cloud infrastructure"      tabindex="0"><span class="tech-icon">☁️</span><span>AWS</span></div>
+          <div class="tech-badge" data-tip="Server-side JavaScript"    tabindex="0"><span class="tech-icon">🟢</span><span>Node.js</span></div>
+          <div class="tech-badge" data-tip="UI component library"      tabindex="0"><span class="tech-icon">⚛️</span><span>React</span></div>
+          <div class="tech-badge" data-tip="Structured data storage"   tabindex="0"><span class="tech-icon">🗄️</span><span>SQL</span></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== WHY JOIN ===================== -->
+    <section class="section why-section" id="why-join" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Make It Count</span>
+          <h2 class="section-title" id="why-heading">Why Join SCOPE?</h2>
+          <p class="section-subtitle">Being part of SCOPE is more than attending events — it's about growing into the developer you want to become.</p>
+        </div>
+        <div class="why-grid reveal">
+          <div class="why-card"><div class="why-icon">🚀</div><h3>Hands-on Learning</h3><p>Apply what you learn immediately through practical projects and live coding sessions.</p></div>
+          <div class="why-card"><div class="why-icon">💻</div><h3>Real Projects</h3><p>Build a portfolio of real projects that demonstrate your skills to future employers.</p></div>
+          <div class="why-card"><div class="why-icon">🏆</div><h3>Hackathons</h3><p>Gain experience competing in hackathons and solving challenging real-world problems.</p></div>
+          <div class="why-card"><div class="why-icon">🤝</div><h3>Networking</h3><p>Connect with talented peers, industry mentors and a growing alumni network.</p></div>
+          <div class="why-card"><div class="why-icon">☁️</div><h3>Cloud Skills</h3><p>Learn AWS, cloud computing and DevOps — the most in-demand skills in tech today.</p></div>
+          <div class="why-card"><div class="why-icon">🎯</div><h3>Career Growth</h3><p>Accelerate your career with skills, experience and connections that set you apart.</p></div>
+          <div class="why-card"><div class="why-icon">⭐</div><h3>Leadership</h3><p>Take on leadership roles, organize events and mentor the next batch of members.</p></div>
+          <div class="why-card"><div class="why-icon">🧩</div><h3>Team Collaboration</h3><p>Develop teamwork and communication skills working on group projects and events.</p></div>
+        </div>
+        <div class="why-cta reveal">
+          <a href="#contact" class="btn btn-primary btn-glow btn-large">Become a SCOPE Member</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+            <span class="section-label">Reach Out</span>
+            <h2 class="contact-heading" id="contact-heading">
+              Let's build something<br>
+              <span class="grad-text">together.</span>
+            </h2>
+            <p class="contact-sub">Have a question, idea, or want to be part of the community? We'd love to hear from you.</p>
+            <div class="contact-links">
+              <a href="mailto:scopeclub@example.com" class="contact-link-item">
+                <!-- TODO: Replace with actual club email -->
+                <div class="cli-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                <div><span class="cli-label">Email</span><span class="cli-value">scopeclub@example.com</span></div>
+              </a>
+              <!-- TODO: Replace href with actual Instagram URL -->
+              <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="cli-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+                <div><span class="cli-label">Instagram</span><span class="cli-value">@scopeclub</span></div>
+              </a>
+              <!-- TODO: Replace href with actual LinkedIn URL -->
+              <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="cli-icon"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+                <div><span class="cli-label">LinkedIn</span><span class="cli-value">SCOPE Club</span></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-form-wrap reveal">
+            <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+              <div class="form-group">
+                <label for="formName" class="form-label">Your Name</label>
+                <input type="text"  id="formName"    name="name"    class="form-input" placeholder="e.g. Alex Johnson" required autocomplete="name"  aria-required="true" />
+              </div>
+              <div class="form-group">
+                <label for="formEmail" class="form-label">Email Address</label>
+                <input type="email" id="formEmail"   name="email"   class="form-input" placeholder="you@example.com"   required autocomplete="email" aria-required="true" />
+              </div>
+              <div class="form-group">
+                <label for="formMessage" class="form-label">Message</label>
+                <textarea id="formMessage" name="message" class="form-input form-textarea" placeholder="Tell us about yourself or ask a question..." rows="5" required aria-required="true"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow btn-full">
+                Send Message
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+              <div class="form-success" id="formSuccess" role="alert" aria-live="polite" aria-hidden="true">
+                <div class="fs-icon">🚀</div>
+                <div>
+                  <strong>Message received!</strong>
+                  <p>Thanks for reaching out to SCOPE. We'll get back to you soon.</p>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-gradient-line" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo" aria-label="SCOPE Club Home">
+            <span class="logo-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="10" fill="url(#footerLogoG)"/>
+                <path d="M11 10L6 16L11 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 10L26 16L21 22" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 7L15 25" stroke="#67e8f9" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="footerLogoG" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop stop-color="#3b82f6"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+              </svg>
+            </span>
+            <span class="logo-text">SCOPE<span class="logo-accent">CLUB</span></span>
+          </a>
+          <p class="footer-tagline">Learn. Build. Innovate.</p>
+          <p class="footer-desc">A student-driven technical community building the next generation of tech innovators.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Navigate</h4>
+          <ul class="footer-links">
+            <li><a href="#home"       class="footer-link">Home</a></li>
+            <li><a href="#about"      class="footer-link">About</a></li>
+            <li><a href="#what-we-do" class="footer-link">What We Do</a></li>
+            <li><a href="#events"     class="footer-link">Events</a></li>
+            <li><a href="#resources"  class="footer-link">Resources</a></li>
+            <li><a href="#contact"    class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Activities</h4>
+          <ul class="footer-links">
+            <li><a href="#what-we-do" class="footer-link">Hackathons</a></li>
+            <li><a href="#what-we-do" class="footer-link">Coding Contests</a></li>
+            <li><a href="#what-we-do" class="footer-link">Projects</a></li>
+            <li><a href="#what-we-do" class="footer-link">Workshops</a></li>
+            <li><a href="#what-we-do" class="footer-link">Tech Talks</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col-title">Connect</h4>
+          <div class="footer-socials">
+            <!-- TODO: Replace with actual social URLs -->
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="fsocial" aria-label="Instagram">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="fsocial" aria-label="LinkedIn">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="fsocial" aria-label="GitHub">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© <span id="footerYear">2026</span> SCOPE Club. All rights reserved.</p>
+        <p class="footer-made">Made with <span aria-label="love">❤️</span> by SCOPE Club Members</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
